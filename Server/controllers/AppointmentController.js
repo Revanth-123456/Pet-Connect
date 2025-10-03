@@ -106,7 +106,7 @@ export const CreateAppointment = async (req, res) => {
       line_items: [
         {
           price_data: {
-            currency: "pkr",
+            currency: "inr",
             product_data: {
               name: `Consultation with Dr. ${vet.name}`,
               description: `On ${date} at ${startTime}–${endTime}`,

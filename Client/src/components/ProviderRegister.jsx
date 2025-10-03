@@ -3,19 +3,21 @@ import { Eye, EyeOff, ChevronDown, X} from "lucide-react";
 import axios from 'axios';
 
 const majorCitiesPakistan = [
-  "Karachi",
-  "Lahore",
-  "Islamabad",
-  "Rawalpindi",
-  "Faisalabad",
-  "Peshawar",
-  "Quetta",
-  "Multan",
+  "Delhi",
+  "Mumbai",
+  "Bengaluru",
   "Hyderabad",
-  "Sialkot",
-  "Gujranwala",
-  "Sargodha",
-  "Bahawalpur"
+  "Chennai",
+  "Kolkata",
+  "Pune",
+  "Ahmedabad",
+  "Jaipur",
+  "Lucknow",
+  "Kanpur",
+  "Nagpur",
+  "Indore",
+  "Bhopal",
+  "Patna"
 ];
 
 export default function ProviderRegister({onRegisterSuccess, onClose}) {
@@ -212,8 +214,8 @@ export default function ProviderRegister({onRegisterSuccess, onClose}) {
                       onChange={handleInputChange}
                       placeholder="eg. 03001234567"
                       className="w-full p-2 border border-gray-600 rounded-lg focus:outline-none focus:border-orange-500 shadow-sm"
-                      pattern="^03\d{9}$"
-                      title="Phone number must be exactly 11 digits."
+                      pattern="^91\d{10}$"
+                      title="Phone number must be exactly 12 digits."
                       required
                     />
                   </div>

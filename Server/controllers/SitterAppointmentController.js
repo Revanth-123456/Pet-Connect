@@ -52,7 +52,7 @@ export const CreateSitterAppointment = async (req, res) => {
       line_items: [
         {
           price_data: {
-            currency: "pkr",
+            currency: "inr",
             product_data: {
               name: `Sitting with ${sitter.name}`,
               description: `On ${date} (${consultationType}) from ${startTime}–${endTime}`,

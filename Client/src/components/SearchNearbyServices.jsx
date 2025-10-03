@@ -23,9 +23,21 @@ const SearchNearbyServices = ({ onClose, initialService = '' }) => {
   const navigate = useNavigate();
 
   const cities = [
-    'Karachi', 'Lahore', 'Islamabad', 'Rawalpindi', 'Faisalabad',
-    'Peshawar', 'Quetta', 'Multan', 'Hyderabad', 'Sialkot',
-    'Gujranwala', 'Sargodha', 'Bahawalpur'
+  "Delhi",
+  "Mumbai",
+  "Bengaluru",
+  "Hyderabad",
+  "Chennai",
+  "Kolkata",
+  "Pune",
+  "Ahmedabad",
+  "Jaipur",
+  "Lucknow",
+  "Kanpur",
+  "Nagpur",
+  "Indore",
+  "Bhopal",
+  "Patna"
   ];
   const services = [
     'Veterinary Online Consultation',

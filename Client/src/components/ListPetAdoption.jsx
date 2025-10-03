@@ -9,20 +9,23 @@ const MAX_PHOTOS = 5;
 const MIN_PHOTOS = 4;
 
 const majorCitiesPakistan = [
-  "Karachi",
-  "Lahore",
-  "Islamabad",
-  "Rawalpindi",
-  "Faisalabad",
-  "Peshawar",
-  "Quetta",
-  "Multan",
+  "Delhi",
+  "Mumbai",
+  "Bengaluru",
   "Hyderabad",
-  "Sialkot",
-  "Gujranwala",
-  "Sargodha",
-  "Bahawalpur"
-];
+  "Chennai",
+  "Kolkata",
+  "Pune",
+  "Ahmedabad",
+  "Jaipur",
+  "Lucknow",
+  "Kanpur",
+  "Nagpur",
+  "Indore",
+  "Bhopal",
+  "Patna"
+]
+
 
 const petColorsList = [
   "Black",
@@ -275,10 +278,10 @@ const ListPetAdoption = () => {
     // Special case: phone input validation
     if (name === "phone") {
       let newValue = value.replace(/[^0-9]/g, ""); // remove non-numeric
-      if (newValue.length > 11) {
-        setError("Phone number cannot exceed 11 digits.");
-      } else if (newValue.length >= 2 && !/^03/.test(newValue)) {
-        setError("Phone number must start with 03.");
+      if (newValue.length > 12) {
+        setError("Phone number cannot exceed 12 digits.");
+      } else if (newValue.length >= 2 && !/^91/.test(newValue)) {
+        setError("Phone number must start with 91.");
       } else {
         setError("");
       }

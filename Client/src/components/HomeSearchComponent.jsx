@@ -5,7 +5,7 @@ import SearchNearbyServices from './SearchNearbyServices';
 
 const HomeSearchComponent = () => {
   const [location, setLocation] = useState(() => {
-    return localStorage.getItem('userCity') || 'Islamabad';
+    return localStorage.getItem('userCity') || 'Bengaluru';
   });
   
   const [showSearchOverlay, setShowSearchOverlay] = useState(false);

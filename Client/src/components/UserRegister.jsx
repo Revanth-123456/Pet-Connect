@@ -3,19 +3,21 @@ import { Eye, EyeOff } from "lucide-react";
 import axios from 'axios';
 
 const majorCitiesPakistan = [
-  "Karachi",
-  "Lahore",
-  "Islamabad",
-  "Rawalpindi",
-  "Faisalabad",
-  "Peshawar",
-  "Quetta",
-  "Multan",
+  "Delhi",
+  "Mumbai",
+  "Bengaluru",
   "Hyderabad",
-  "Sialkot",
-  "Gujranwala",
-  "Sargodha",
-  "Bahawalpur"
+  "Chennai",
+  "Kolkata",
+  "Pune",
+  "Ahmedabad",
+  "Jaipur",
+  "Lucknow",
+  "Kanpur",
+  "Nagpur",
+  "Indore",
+  "Bhopal",
+  "Patna"
 ];
 
 export default function UserRegister({ onRegisterSuccess, onClose }) {
@@ -132,9 +134,9 @@ export default function UserRegister({ onRegisterSuccess, onClose }) {
                 type="tel" 
                 name="phone" 
                 value={formData.phone} 
-                pattern="^03\d{9}$"
+                pattern="^91\d{10}$"
                 onChange={handleChange} 
-                placeholder="eg. 03001234567" 
+                placeholder="eg. 919380066459" 
                 className="w-full p-2 border border-gray-600 rounded focus:outline-none focus:border-orange-500" 
                 required 
               />

@@ -48,7 +48,7 @@ export const CreateGroomerAppointment = async (req, res) => {
       line_items: [
         {
           price_data: {
-            currency: "pkr",
+            currency: "inr",
             product_data: {
               name: `Grooming with ${groomer.name}`,
               description: `On ${date} from ${startTime}–${endTime}`,

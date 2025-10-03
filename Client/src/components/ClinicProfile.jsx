@@ -82,8 +82,8 @@ const ClinicProfile = () => {
     setFormData({...formData, [name]: value, });
 
     if (name === 'phone') {
-        if (!/^03\d{9}$/.test(value)) {
-          setError("Invalid phone number format. Example: 03001234567");
+        if (!/^91\d{12}$/.test(value)) {
+          setError("Invalid phone number format. Example: 919380066459");
         } else {
           setError(""); // Clear error if the phone number is valid
         }

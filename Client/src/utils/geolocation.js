@@ -7,9 +7,10 @@ import axios from 'axios';
  */
 export const detectCityByGeo = async () => {
   const validCities = [
-    'Karachi', 'Lahore', 'Islamabad', 'Rawalpindi', 'Faisalabad',
-    'Peshawar', 'Quetta', 'Multan', 'Hyderabad', 'Sialkot',
-    'Gujranwala', 'Sargodha', 'Bahawalpur'
+    'Delhi', 'Mumbai', 'Bengaluru', 'Hyderabad', 'Chennai',
+    'Kolkata', 'Pune', 'Ahmedabad', 'Jaipur', 'Lucknow',
+    'Kanpur', 'Nagpur', 'Indore', 'Bhopal', 'Patna',
+    'Chandigarh', 'Surat', 'Coimbatore', 'Kochi', 'Thiruvananthapuram'
   ];
 
   // Promise-wrap getCurrentPosition

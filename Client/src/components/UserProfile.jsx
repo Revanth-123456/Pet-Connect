@@ -267,19 +267,21 @@ const toggleDetailedProfileView = () => {
   }, [userRole]);
 
   const majorCitiesPakistan = [
-    "Karachi",
-    "Lahore",
-    "Islamabad",
-    "Rawalpindi",
-    "Faisalabad",
-    "Peshawar",
-    "Quetta",
-    "Multan",
-    "Hyderabad",
-    "Sialkot",
-    "Gujranwala",
-    "Sargodha",
-    "Bahawalpur"
+  "Delhi",
+  "Mumbai",
+  "Bengaluru",
+  "Hyderabad",
+  "Chennai",
+  "Kolkata",
+  "Pune",
+  "Ahmedabad",
+  "Jaipur",
+  "Lucknow",
+  "Kanpur",
+  "Nagpur",
+  "Indore",
+  "Bhopal",
+  "Patna"
   ];
 
   const handleSave = async () => {
@@ -384,8 +386,8 @@ const handleSaveDetails = async () => {
     }
     if (name === 'phone') {
       updatedValue = updatedValue.replace(/[^0-9]/g, '');
-      if (updatedValue && !/^03\d{9}$/.test(updatedValue)) {
-        setError("Invalid phone number format. Example: 03001234567");
+      if (updatedValue && !/^91\d{10}$/.test(updatedValue)) {
+        setError("Invalid phone number format. Example: 919380066459");
       } else {
         setError("");
       }

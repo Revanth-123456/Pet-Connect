@@ -100,8 +100,8 @@ const SitterProfile = () => {
     setFormData({ ...formData, [name]: value });
 
     if (name === 'phone') {
-      if (!/^03\d{9}$/.test(value)) {
-        setError('Invalid phone number format. Example: 03001234567');
+      if (!/^91\d{10}$/.test(value)) {
+        setError('Invalid phone number format. Example: 919380066459');
       } else {
         setError(''); // Clear error if the phone number is valid
       }
@@ -202,10 +202,21 @@ const SitterProfile = () => {
                     required
                 >
                     <option value="">Select City</option>
-                    <option value="Islamabad">Islamabad</option>
-                    <option value="Rawalpindi">Rawalpindi</option>
-                    <option value="Karachi">Karachi</option>
-                    <option value="Lahore">Lahore</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Kanpur">Kanpur</option>
+                    <option value="Nagpur">Nagpur</option>
+                    <option value="Indore">Indore</option>
+                    <option value="Bhopal">Bhopal</option>
+                    <option value="Patna">Patna</option>
                 </select>
                 <span className="absolute inset-y-0 top-3 right-3 flex items-center pointer-events-none text-gray-600">
                     <ChevronDown />
