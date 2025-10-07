@@ -1,9 +1,11 @@
 // controllers/reviews.js
 import jwt         from "jsonwebtoken";
-import Review      from "../models/Review.js";
-import {Appointment} from "../models/Appointment.js";
+import SitterReview  from "../models/SitterReview.js";
+import {SitterAppointment} from "../models/SitterAppointment.js";
 
-export const CreateReview = async (req, res) => {
+
+
+export const CreateSitterReview = async (req, res) => {
   // 1) Auth: pet-owner token
   const token = req.cookies.pet_ownerToken;
   if (!token) {
@@ -19,8 +21,8 @@ export const CreateReview = async (req, res) => {
   const userId = decoded.id;
 
   // 2) Body params
-  const { appointmentId,  vetId , rating, review: text } = req.body;
-  if (!appointmentId || !vetId || !rating) {
+  const {sitterappointmentId,  sitterId , rating, review: text } = req.body;
+  if (!sitterappointmentId || !sitterId || !rating) {
     return res.status(400).json({ message: "Missing required fields" });
   }
   if (rating < 1 || rating > 5) {
@@ -29,14 +31,14 @@ export const CreateReview = async (req, res) => {
 
   try {
     // 3) Check appointment
-    const appt = await Appointment.findById(appointmentId);
+    const appt = await SitterAppointment.findById(sitterappointmentId);
     if (!appt) {
       return res.status(404).json({ message: "Appointment not found" });
     }
     if (appt.userId.toString() !== userId) {
       return res.status(403).json({ message: "You did not book this appointment" });
     }
-    if (appt.vetId.toString() !== vetId) {
+    if (appt.sitterId.toString() !== sitterId) {
       return res.status(400).json({ message: "Invalid provider for this appointment" });
     }
     if (appt.status !== "completed") {
@@ -44,20 +46,20 @@ export const CreateReview = async (req, res) => {
     }
 
     // 4) Prevent duplicate
-    const existing = await Review.findOne({ appointment: appointmentId });
+    const existing = await SitterReview.findOne({ sitterappointment: sitterappointmentId });
     if (existing) {
       return res.status(409).json({ message: "You have already reviewed this appointment" });
     }
 
     // 5) Create & save
-    const newReview = new Review({
-      appointment: appointmentId,
-      vet:    vetId,
+    const newSitterReview = new SitterReview({
+      sitterappointment: sitterappointmentId,
+      sitter:    sitterId,
       user:        userId,
       rating,
       text
     });
-    await newReview.save();
+    await newSitterReview.save();
 
     res.status(201).json({ message: "Review submitted successfully" });
   } catch (err) {
@@ -69,30 +71,3 @@ export const CreateReview = async (req, res) => {
 
 
 
-export const GetReviewsByProvider = async (req, res) => {
-  const { providerType, providerId } = req.params;
-  console.log("role: ", providerType);
-  console.log("id: ", providerId);
-
-  if (!providerId) {
-    return res.status(400).json({ message: "Missing providerId parameter" });
-  }
-
-  try {
-    // 2) Build dynamic filter
-    //    e.g. if providerType === "groomer", it will filter { groomer: providerId }
-    const filter = { [providerType]: providerId };
-
-    // 3) Query & populate
-    const reviews = await Review.find(filter)
-      .sort({ createdAt: -1 })               // newest-first
-      .populate("user", "name email")        // reviewer info
-      .populate("appointment", "date")       // (optional) when the appt happened
-      .lean();
-
-    return res.status(200).json({ reviews });
-  } catch (err) {
-    console.error("Error in GetReviewsByProvider:", err);
-    return res.status(500).json({ message: "Internal server error" });
-  }
-};

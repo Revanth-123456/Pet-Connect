@@ -14,7 +14,7 @@ const SearchNearbyServices = ({ onClose, initialService = '' }) => {
 
   const [activeField, setActiveField] = useState(defaultField);
   const [selectedCity, setSelectedCity] = useState(() => {
-    return localStorage.getItem('userCity') || 'Islamabad'
+    return localStorage.getItem('userCity') || 'Bengaluru'
   });
   const [locationError, setLocationError] = useState('');
 

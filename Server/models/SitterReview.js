@@ -1,19 +1,18 @@
-// models/Review.js
+// models/SitterReview.js
 import mongoose from "mongoose";
 
-const reviewSchema = new mongoose.Schema({
-  appointment: {
+const SitterReviewSchema = new mongoose.Schema({
+ 
+  sitterappointment: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Appointment",
+    ref: "SitterAppointment",
     required: true
   },
-  
-  vet: {
+  sitter: {
     type: mongoose.Schema.Types.ObjectId,
-    ref:"Vet",
+    ref:"Sitter",
     required: true,
   },
- 
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -34,4 +33,4 @@ const reviewSchema = new mongoose.Schema({
   timestamps: true
 });
 
-export default mongoose.model("Review", reviewSchema);
+export default mongoose.model("SitterReview", SitterReviewSchema);

@@ -20,6 +20,7 @@ export default function AppointmentsPage() {
   const [now, setNow] = useState(new Date());
   const navigate = useNavigate();
 
+
   const appointmentCounts = {
     vet: appointments.filter(appt => appt.providerType === "vet").length,
     sitter: appointments.filter(appt => appt.providerType === "sitter").length,
@@ -184,6 +185,7 @@ export default function AppointmentsPage() {
                         return (
                           <div
                             key={appt._id}
+                            
                             className="p-5 rounded-xl shadow-sm flex flex-col sm:flex-row sm:justify-between sm:items-center bg-orange-50 border border-orange-100"
                           >
                             <div className="space-y-1 flex-1">
@@ -229,7 +231,7 @@ export default function AppointmentsPage() {
                             <div className="mt-4 sm:mt-0 flex flex-col gap-2 items-end">
                               {appt.status === "completed" && !appt.hasReview && (
                                 <button
-                                  onClick={() => navigate(`/submit-feedback?appointmentId=${appt._id}`)}
+                                  onClick={() => navigate(`/submit-feedback?appointmentId=${appt._id}&providerId=${appt.providerId}`)}
                                   className="px-4 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg hover:opacity-90 transition-opacity"
                                 >
                                   Leave Review
@@ -311,7 +313,7 @@ export default function AppointmentsPage() {
                             <div className="mt-4 sm:mt-0 flex flex-col gap-2 items-end">
                               {!appt.hasReview && (
                                 <button
-                                  onClick={() => navigate(`/submit-feedback?appointmentId=${appt._id}`)}
+                                  onClick={() => navigate(`/submit-feedback?appointmentId=${appt._id}&providerId=${appt.providerId}`)}
                                   className="px-4 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg hover:opacity-90 transition-opacity"
                                 >
                                   Leave Review

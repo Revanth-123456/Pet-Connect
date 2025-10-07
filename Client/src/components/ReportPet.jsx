@@ -381,13 +381,21 @@ import { FaPhone, FaUser, FaMapMarkerAlt } from "react-icons/fa";
 
 // List of Pakistan cities
 const cities = [
-  "Karachi",
-  "Lahore",
-  "Islamabad",
-  "Rawalpindi",
-  "Peshawar",
-  "Quetta",
-  "Faisalabad",
+  "Delhi",
+  "Mumbai",
+  "Bengaluru",
+  "Hyderabad",
+  "Chennai",
+  "Kolkata",
+  "Pune",
+  "Ahmedabad",
+  "Jaipur",
+  "Lucknow",
+  "Kanpur",
+  "Nagpur",
+  "Indore",
+  "Bhopal",
+  "Patna",
   "Other",
 ];
 
@@ -590,7 +598,7 @@ function ReportPet() {
                         value={phoneNumber}
                         onChange={e => setPhoneNumber(e.target.value)}
                         placeholder="Enter phone number"
-                        pattern="^(?:\+92|0)?3\d{2}\d{7}$"
+                        pattern="^(?:\+91|0)?[8-9]\d{9}$"
                          required
                          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />

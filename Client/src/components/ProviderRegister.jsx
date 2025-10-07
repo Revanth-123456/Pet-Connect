@@ -212,7 +212,7 @@ export default function ProviderRegister({onRegisterSuccess, onClose}) {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      placeholder="eg. 03001234567"
+                      placeholder="eg. 919380066459"
                       className="w-full p-2 border border-gray-600 rounded-lg focus:outline-none focus:border-orange-500 shadow-sm"
                       pattern="^91\d{10}$"
                       title="Phone number must be exactly 12 digits."
