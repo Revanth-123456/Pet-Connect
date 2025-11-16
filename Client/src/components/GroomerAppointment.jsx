@@ -23,7 +23,7 @@ const GroomerAppointment = () => {
   const [selectedIsoDate, setSelectedIsoDate] = useState(null);
   const [selectedSlot, setSelectedSlot] = useState(null);
 
-  const [reviews, setReviews] = useState([]);
+  const [groomerreviews, setGroomerReviews] = useState([]);
   const [error, setError] = useState(null);
 
   const providerType = 'groomer';
@@ -39,10 +39,10 @@ const GroomerAppointment = () => {
       setError(null);
 
       try {
-        const url = `http://localhost:5000/auth/reviews/${providerType}/${providerId}`;
+        const url = `http://localhost:5000/auth/groomerreviews/${providerType}/${providerId}`;
         const res = await axios.get(url);
 
-        setReviews(res.data.reviews || []);
+        setGroomerReviews(res.data.groomerreviews || []);
       } catch (err) {
         console.error('Error loading reviews:', err);
         setError(
@@ -511,16 +511,16 @@ if (display === 'Today') {
           <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
             <Star className="w-5 h-5 text-amber-500" />
             Reviews About {groomer.name.split(" ")[0]} 
-            <span className="text-amber-600">({reviews.length})</span>
+            <span className="text-amber-600">({groomerreviews.length})</span>
           </h3>
 
-          {reviews.length === 0 ? (
+          {groomerreviews.length === 0 ? (
             <div className="mt-4 p-6 text-center bg-gray-50 rounded-xl">
               <p className="text-gray-500 italic">No reviews yet - be the first to share your experience!</p>
             </div>
           ) : (
             <div className="mt-6 space-y-5">
-              {reviews.map((review) => (
+              {groomerreviews.map((review) => (
                 <div 
                   key={review._id}
                   className="p-5 bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 border border-gray-100"
