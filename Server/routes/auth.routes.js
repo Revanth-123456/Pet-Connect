@@ -31,6 +31,7 @@ import {GetVerifiedVets, GetVetById } from '../controllers/VetController.js';
 import {CreateAppointment, ConfirmAppointment, StripeWebhook, CancelAppointment,CheckOutHomeAppointment,GetUserAppointments, CheckInHomeAppointment,GetVetAppointments, StartAppointment, CompleteAppointment} from '../controllers/AppointmentController.js';
 import {CreateReview,  GetReviewsByProvider} from '../controllers/ReviewController.js';
 import {CreateSitterReview} from '../controllers/SitterReviewController.js';
+import {CreateGroomerReview} from '../controllers/GroomerReviewController.js';
 
 import {CreateGroomerAppointment, GetUserGroomerAppointments, GetGroomerAppointments, CompleteGroomerAppointment,CheckInGroomerAppointment,CheckOutGroomerAppointment,StartGroomerAppointment} from '../controllers/GroomerAppointmentController.js';
 import {CreateSitterAppointment,StartSitterAppointment, CheckInSitterAppointment,CheckOutSitterAppointment,GetUserSitterAppointments, GetSitterAppointments, CompleteSitterAppointment} from '../controllers/SitterAppointmentController.js';
@@ -54,6 +55,7 @@ const AuthRoutes = express.Router();
 //Reviews Routes
 AuthRoutes.post("/create-review", CreateReview);
 AuthRoutes.post("/create-sitter-review", CreateSitterReview);
+AuthRoutes.post("/create-groomer-review", CreateGroomerReview);
 AuthRoutes.get("/reviews/:providerType(vet|groomer|sitter)/:providerId", GetReviewsByProvider);
 
 //Appointment Routes
