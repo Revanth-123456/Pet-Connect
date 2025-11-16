@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 import jwt from "jsonwebtoken";
-import { Appointment } from "../models/GroomerAppointment.js"; // Adjust path if needed
+import { GroomerAppointment } from "../models/GroomerAppointment.js"; // Adjust path if needed
 import { UserModel } from "../models/User.js";
 import { GroomerModel } from "../models/Groomer.js"; // Assuming you have this model
 import Notification from "../models/Notifications.js";
@@ -29,7 +29,7 @@ export const CreateGroomerAppointment = async (req, res) => {
       return res.status(404).json({ message: "Groomer not found" });
     }
 
-    const appointment = await Appointment.create({
+    const appointment = await GroomerAppointment.create({
       groomerId,
       userId,
       date: new Date(date),
