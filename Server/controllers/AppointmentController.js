@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 import { Appointment as VetAppt  } from "../models/Appointment.js";
 // rename the GroomerAppointment export to avoid collision with the other Appointment model
-import { Appointment as GroomerAppointment } from "../models/GroomerAppointment.js";
+import { GroomerAppointment } from "../models/GroomerAppointment.js";
 import { SitterAppointment }  from "../models/SitterAppointment.js";
 
 import { UserModel } from "../models/User.js";
