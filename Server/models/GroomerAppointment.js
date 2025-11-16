@@ -62,5 +62,5 @@ groomerAppointmentSchema.pre('save', function(next) {
   next();
 });
 
-export const Appointment = mongoose.model('GroomerAppointment', groomerAppointmentSchema);
+export const GroomerAppointment = mongoose.model('GroomerAppointment', groomerAppointmentSchema);
 
