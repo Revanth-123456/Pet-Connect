@@ -231,7 +231,7 @@ export default function AppointmentsPage() {
                             <div className="mt-4 sm:mt-0 flex flex-col gap-2 items-end">
                               {appt.status === "completed" && !appt.hasReview && (
                                 <button
-                                  onClick={() => navigate(`/submit-feedback?appointmentId=${appt._id}&providerId=${appt.providerId}`)}
+                                  onClick={() => navigate(`/submit-feedback?appointmentId=${appt._id}`)}
                                   className="px-4 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg hover:opacity-90 transition-opacity"
                                 >
                                   Leave Review
@@ -313,7 +313,7 @@ export default function AppointmentsPage() {
                             <div className="mt-4 sm:mt-0 flex flex-col gap-2 items-end">
                               {!appt.hasReview && (
                                 <button
-                                  onClick={() => navigate(`/submit-feedback?appointmentId=${appt._id}&providerId=${appt.providerId}`)}
+                                  onClick={() => navigate(`/submit-feedback?appointmentId=${appt._id}&${appt.providerType}Id=${appt.providerId}`)}
                                   className="px-4 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg hover:opacity-90 transition-opacity"
                                 >
                                   Leave Review
