@@ -7,7 +7,7 @@ import Blog from "../models/Blog.js";
 import {sendVerificationStatusEmail} from '../middleware/Email.js';
 import { Appointment as VetAppt  } from "../models/Appointment.js";
 // rename the GroomerAppointment export to avoid collision with the other Appointment model
-import { Appointment as GroomerAppointment } from "../models/GroomerAppointment.js";
+import { GroomerAppointment } from "../models/GroomerAppointment.js";
 import { SitterAppointment }  from "../models/SitterAppointment.js";
 
 import bcryptjs from 'bcryptjs';
