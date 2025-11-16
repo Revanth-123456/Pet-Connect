@@ -14,8 +14,11 @@ const ratingLabels = {
 export default function SubmitFeedbackPage() {
   const { search } = useLocation();
   const params = new URLSearchParams(search);
+
   const appointmentId = params.get("appointmentId");
   const vetId = params.get("vetId");
+  const sitterId = params.get("sitterId");
+  const groomerId = params.get("groomerId");
 
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
@@ -27,13 +30,35 @@ export default function SubmitFeedbackPage() {
     e.preventDefault();
     setSubmitting(true);
     setError(null);
-    
+
     try {
-      await axios.post(
-        "http://localhost:5000/auth/create-review",
-        { appointmentId, vetId, rating, review },
-        { withCredentials: true }
-      );
+      // 🔹 VET review
+      if (vetId) {
+        await axios.post(
+          "http://localhost:5000/auth/create-review",
+          { appointmentId, vetId, rating, review },
+          { withCredentials: true }
+        );
+      }
+
+      // 🔹 SITTER review
+      if (sitterId) {
+        await axios.post(
+          "http://localhost:5000/auth/create-sitter-review",
+          { appointmentId, sitterId, rating, review },
+          { withCredentials: true }
+        );
+      }
+
+      // 🔹 GROOMER review
+      if (groomerId) {
+        await axios.post(
+          "http://localhost:5000/auth/create-groomer-review",
+          { appointmentId, groomerId, rating, review },
+          { withCredentials: true }
+        );
+      }
+
       navigate("/thank-you");
     } catch (err) {
       setError(err.response?.data?.message || "Failed to submit review");
@@ -54,7 +79,7 @@ export default function SubmitFeedbackPage() {
           </p>
         </div>
 
-        <form 
+        <form
           onSubmit={handleSubmit}
           className="bg-white shadow-xl rounded-2xl p-6 sm:p-8 space-y-8 transition-all duration-200 hover:shadow-2xl"
         >
@@ -64,57 +89,51 @@ export default function SubmitFeedbackPage() {
             </div>
           )}
 
-          <div className="space-y-6">
-            {/* Rating Section */}
-            <div>
-              <label className="block text-xl font-semibold text-gray-600 mb-4">
-                Rate your experience
-              </label>
-              <div className="flex justify-center gap-2 sm:gap-3">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <button
-                    key={star}
-                    type="button"
-                    onClick={() => setRating(star)}
-                    className={`transform transition-all duration-200 ${
-                      rating >= star 
-                        ? "text-orange-500 scale-110"
-                        : "text-gray-300 hover:text-orange-300"
-                    }`}
-                  >
-                    <Star 
-                      size={40} 
-                      className="fill-current"
-                      strokeWidth={rating >= star ? 2 : 1}
-                    />
-                  </button>
-                ))}
-              </div>
-              {rating > 0 && (
-                <p className="text-center mt-3 text-lg font-medium text-gray-700">
-                  {ratingLabels[rating]}
-                </p>
-              )}
+          {/* Rating */}
+          <div>
+            <label className="block text-xl font-semibold text-gray-600 mb-4">
+              Rate your experience
+            </label>
+            <div className="flex justify-center gap-2 sm:gap-3">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  type="button"
+                  onClick={() => setRating(star)}
+                  className={`transform transition-all duration-200 ${
+                    rating >= star
+                      ? "text-orange-500 scale-110"
+                      : "text-gray-300 hover:text-orange-300"
+                  }`}
+                >
+                  <Star size={40} className="fill-current" />
+                </button>
+              ))}
             </div>
-
-            {/* Review Section */}
-            <div>
-              <label className="block text-xl font-semibold text-gray-600 mb-4">
-                Share your thoughts
-              </label>
-              <textarea
-                value={review}
-                onChange={(e) => setReview(e.target.value)}
-                rows={4}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl 
-                          focus:ring-2 focus:ring-orange-500 focus:border-orange-500 
-                          transition-all resize-none text-lg"
-                placeholder="Tell us about your experience..."
-              />
-            </div>
+            {rating > 0 && (
+              <p className="text-center mt-3 text-lg font-medium text-gray-700">
+                {ratingLabels[rating]}
+              </p>
+            )}
           </div>
 
-          {/* Submit Button */}
+          {/* Review */}
+          <div>
+            <label className="block text-xl font-semibold text-gray-600 mb-4">
+              Share your thoughts
+            </label>
+            <textarea
+              value={review}
+              onChange={(e) => setReview(e.target.value)}
+              rows={4}
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl 
+                        focus:ring-2 focus:ring-orange-500 focus:border-orange-500 
+                        transition-all resize-none text-lg"
+              placeholder="Tell us about your experience..."
+            />
+          </div>
+
+          {/* Button */}
           <button
             type="submit"
             disabled={submitting}
@@ -122,17 +141,7 @@ export default function SubmitFeedbackPage() {
                       font-semibold text-lg rounded-xl transition-all
                       disabled:opacity-70 disabled:cursor-not-allowed"
           >
-            {submitting ? (
-              <span className="flex items-center justify-center gap-2">
-                <svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Submitting...
-              </span>
-            ) : (
-              "Submit Feedback"
-            )}
+            {submitting ? "Submitting..." : "Submit Feedback"}
           </button>
         </form>
       </div>
