@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const SitterReviewSchema = new mongoose.Schema({
  
-  sitterappointment: {
+  appointment: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "SitterAppointment",
     required: true
